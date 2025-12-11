@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 <div class="trust-badge text-xs">
-                    <i class="fas fa-users"></i> 12 mulheres já agendaram hoje
+                    <i class="fas fa-users"></i> <span><span id="dailyBookingsCount">12</span> mulheres já agendaram hoje</span>
                 </div>
             </div>
             
@@ -177,18 +177,18 @@
             </p>
             
             <!-- Stats -->
-            <div class="grid grid-cols-3 gap-4 mt-8 max-w-2xl mx-auto">
-                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 max-w-2xl mx-auto">
+                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow flex flex-col items-center text-center">
                     <p class="text-3xl font-bold text-yellow-600">+7</p>
-                    <p class="text-xs uppercase text-stone-600 tracking-wider">Anos</p>
+                    <p class="text-[11px] sm:text-xs uppercase text-stone-600 tracking-wider whitespace-nowrap">Anos</p>
                 </div>
-                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow">
+                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow flex flex-col items-center text-center">
                     <p class="text-3xl font-bold text-rose-600">+719</p>
-                    <p class="text-xs uppercase text-stone-600 tracking-wider">Seguidoras</p>
+                    <p class="text-[11px] sm:text-xs uppercase text-stone-600 tracking-wider whitespace-nowrap">Seguidoras</p>
                 </div>
-                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow">
+                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow flex flex-col items-center text-center">
                     <p class="text-3xl font-bold text-stone-800">+1.200</p>
-                    <p class="text-xs uppercase text-stone-600 tracking-wider">Procedimentos</p>
+                    <p class="text-[11px] sm:text-xs uppercase text-stone-600 tracking-wider whitespace-nowrap">Procedimentos</p>
                 </div>
             </div>
         </div>
@@ -604,9 +604,67 @@
         const TIMER_DURATION = 2 * 60 * 60; // 2 horas em segundos
         const STORAGE_KEY = 'polly_timer_start';
         const EXPIRED_KEY = 'polly_offer_expired';
+        const EXPIRED_SESSION_KEY = 'polly_offer_expired_session';
+        const EXPIRED_COOKIE = 'polly_offer_expired_cookie';
+        const DAILY_BOOKINGS_KEY = 'polly_daily_bookings';
+        const DAILY_BOOKINGS_DATE_KEY = 'polly_daily_bookings_date';
 
-        function checkIfExpired() {
-            return localStorage.getItem(EXPIRED_KEY) === 'true';
+        function setExpiredCookie() {
+            const oneYearInSeconds = 60 * 60 * 24 * 365;
+            document.cookie = `${EXPIRED_COOKIE}=true; path=/; max-age=${oneYearInSeconds}; SameSite=Lax`;
+        }
+
+        function hasExpiredCookie() {
+            return document.cookie.split(';').map(c => c.trim()).some(cookie => cookie.startsWith(`${EXPIRED_COOKIE}=true`));
+        }
+
+        function markOfferExpired() {
+            try {
+                localStorage.setItem(EXPIRED_KEY, 'true');
+                localStorage.removeItem(STORAGE_KEY);
+            } catch (error) {}
+            try {
+                sessionStorage.setItem(EXPIRED_SESSION_KEY, 'true');
+            } catch (error) {}
+            try {
+                setExpiredCookie();
+            } catch (error) {}
+        }
+
+        function isOfferExpired() {
+            try {
+                if (localStorage.getItem(EXPIRED_KEY) === 'true') return true;
+            } catch (error) {}
+            try {
+                if (sessionStorage.getItem(EXPIRED_SESSION_KEY) === 'true') return true;
+            } catch (error) {}
+            try {
+                if (hasExpiredCookie()) return true;
+            } catch (error) {}
+            return false;
+        }
+
+        function getDailyRandomBookingCount() {
+            const today = new Date().toISOString().split('T')[0];
+            try {
+                const savedDate = localStorage.getItem(DAILY_BOOKINGS_DATE_KEY);
+                const savedCount = parseInt(localStorage.getItem(DAILY_BOOKINGS_KEY), 10);
+                if (savedDate === today && !isNaN(savedCount) && savedCount > 8) {
+                    return savedCount;
+                }
+                const newCount = Math.floor(Math.random() * 8) + 9; // 9 a 16
+                localStorage.setItem(DAILY_BOOKINGS_KEY, newCount.toString());
+                localStorage.setItem(DAILY_BOOKINGS_DATE_KEY, today);
+                return newCount;
+            } catch (error) {
+                return Math.floor(Math.random() * 8) + 9;
+            }
+        }
+
+        function updateDailyBookingsBadge() {
+            const badgeNumber = document.getElementById('dailyBookingsCount');
+            if (!badgeNumber) return;
+            badgeNumber.innerText = getDailyRandomBookingCount();
         }
 
         function getTimerStart() {
@@ -615,8 +673,7 @@
                 const elapsed = Math.floor((Date.now() - parseInt(savedStart)) / 1000);
                 const remaining = TIMER_DURATION - elapsed;
                 if (remaining <= 0) {
-                    localStorage.setItem(EXPIRED_KEY, 'true');
-                    localStorage.removeItem(STORAGE_KEY);
+                    markOfferExpired();
                     showExpiredPage();
                     return null;
                 }
@@ -626,6 +683,7 @@
         }
 
         function startNewTimer() {
+            if (isOfferExpired()) return null;
             localStorage.setItem(STORAGE_KEY, Date.now().toString());
             localStorage.removeItem(EXPIRED_KEY);
             return TIMER_DURATION;
@@ -645,11 +703,11 @@
                                 <i class="fas fa-info-circle mr-2"></i> Mas você ainda pode agendar normalmente!
                             </p>
                         </div>
-                        <a href="https://api.whatsapp.com/send?phone=553497992866&text=Olá%20Polly%2C%20gostaria%20de%20agendar%20uma%20consulta." 
+                        <a href="https://www.instagram.com/pollycaixeta.nails/" 
                            target="_blank" 
                            rel="noopener" 
                            class="inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg hover:scale-105 transition">
-                            <i class="fab fa-whatsapp mr-3"></i> Agendar Consulta
+                            <i class="fab fa-instagram mr-3"></i> Agendar via Instagram
                         </a>
                     </div>
                 </div>
@@ -657,11 +715,15 @@
         }
 
         function initializeTimer() {
-            if (checkIfExpired()) return;
+            if (isOfferExpired()) {
+                showExpiredPage();
+                return;
+            }
             
             let timeRemaining = getTimerStart();
             if (timeRemaining === null) {
                 timeRemaining = startNewTimer();
+                if (timeRemaining === null) return;
             }
 
             function updateTimer() {
@@ -687,9 +749,9 @@
                 if (timeRemaining > 0) {
                     timeRemaining--;
                 } else {
-                    localStorage.setItem(EXPIRED_KEY, 'true');
-                    localStorage.removeItem(STORAGE_KEY);
+                    markOfferExpired();
                     showExpiredPage();
+                    timeRemaining = null;
                 }
             }
 
@@ -698,10 +760,19 @@
         }
 
         // Iniciar timer
+        function initPageScripts() {
+            if (!isOfferExpired()) {
+                initializeTimer();
+            } else {
+                showExpiredPage();
+            }
+            updateDailyBookingsBadge();
+        }
+
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeTimer);
+            document.addEventListener('DOMContentLoaded', initPageScripts);
         } else {
-            initializeTimer();
+            initPageScripts();
         }
 
         // ========== FAQ TOGGLE ==========
