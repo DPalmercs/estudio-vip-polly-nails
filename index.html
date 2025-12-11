@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Seu presente exclusivo: 15% OFF na primeira sessão com Polly Caixeta. Unhas que duram 30 dias sem dor, infiltração ou alergias.">
+    <meta name="theme-color" content="#d4af37">
+    <title>🎁 Seu Presente Chegou! 15% OFF com Polly Caixeta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        /* Timer Urgente */
+        .timer-urgent { animation: pulse-urgent 2s infinite; }
+        @keyframes pulse-urgent {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Scroll Reveal */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Ajuste da foto da Polly */
+        .polly-photo-frame {
+            aspect-ratio: 3 / 4;
+            min-height: 360px;
+            overflow: hidden;
+        }
+        .polly-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+        @media (max-width: 768px) {
+            .polly-photo-frame {
+                min-height: 420px;
+            }
+        }
+
+        /* Testimonial Card Hover */
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* CTA Pulse */
+        .cta-pulse {
+            animation: pulse-cta 2s infinite;
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+        }
+        @keyframes pulse-cta {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+        
+        /* Sticky CTA Mobile */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+        
+        /* FAQ Accordion */
+        .faq-item { cursor: pointer; transition: all 0.3s; }
+        .faq-item:hover { background: #fafaf9; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-answer.active { max-height: 500px; }
+        
+        /* Trust Badge */
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            color: #15803d;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased bg-stone-50">
+
+    <!-- Hero Section — Timer & Oferta Visível -->
+    <header class="relative pt-20 pb-12 px-4 min-h-screen flex items-center bg-gradient-to-br from-amber-50 via-rose-50 to-stone-100 overflow-hidden">
+        <!-- Background Decorativo -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-64 h-64 bg-yellow-400 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 bg-rose-300 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-in-up">
+            <!-- Badge de Presente -->
+            <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full mb-4 font-semibold animate-bounce">
+                <i class="fas fa-gift"></i> Presente Exclusivo Desbloqueado
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold text-stone-900 mb-4 leading-tight">
+                🎁 Bem-vinda ao <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-amber-700">Studio VIP</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-stone-700 mb-6 max-w-2xl mx-auto">
+                Você ganhou <strong class="text-rose-600">15% OFF + 3 Bônus</strong> na sua primeira sessão com Polly Caixeta — mas essa oferta expira em:
+            </p>
+            
+            <!-- Timer de Urgência -->
+            <div class="bg-white rounded-2xl p-6 shadow-2xl mb-8 max-w-md mx-auto border-4 border-yellow-500">
+                <p class="text-sm uppercase tracking-widest text-stone-500 mb-3 font-bold">⏰ Oferta Expira em</p>
+                <div class="flex justify-center gap-3 mb-4">
+                    <div class="text-center">
+                        <div id="hours" class="timer-digit text-4xl font-bold bg-gradient-to-br from-yellow-500 to-amber-600 text-white w-16 h-16 rounded-xl flex items-center justify-center shadow-lg">02</div>
+                        <p class="text-xs text-stone-500 mt-2 uppercase font-semibold">Horas</p>
+                    </div>
+                    <div class="text-4xl font-bold text-stone-400 self-center">:</div>
+                    <div class="text-center">
+                        <div id="minutes" class="timer-digit text-4xl font-bold bg-gradient-to-br from-yellow-500 to-amber-600 text-white w-16 h-16 rounded-xl flex items-center justify-center shadow-lg">00</div>
+                        <p class="text-xs text-stone-500 mt-2 uppercase font-semibold">Min</p>
+                    </div>
+                    <div class="text-4xl font-bold text-stone-400 self-center">:</div>
+                    <div class="text-center">
+                        <div id="seconds" class="timer-digit text-4xl font-bold bg-gradient-to-br from-yellow-500 to-amber-600 text-white w-16 h-16 rounded-xl flex items-center justify-center shadow-lg">00</div>
+                        <p class="text-xs text-stone-500 mt-2 uppercase font-semibold">Seg</p>
+                    </div>
+                </div>
+                <div class="trust-badge text-xs">
+                    <i class="fas fa-users"></i> 12 mulheres já agendaram hoje
+                </div>
+            </div>
+            
+            <!-- CTA Principal -->
+            <a href="https://api.whatsapp.com/send?phone=553497992866&text=Oii%20Polly!%20Vim%20do%20Instagram%20e%20quero%20GARANTIR%20minha%20sess%C3%A3o%20com%2015%25%20OFF%20%2B%20B%C3%B4nus!%20%F0%9F%8E%81" 
+               target="_blank" 
+               rel="noopener" 
+               class="cta-pulse inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl hover:shadow-yellow-500/50 transition-all transform hover:scale-105 mb-4">
+                <i class="fab fa-whatsapp mr-3 text-2xl"></i> GARANTIR MINHA SESSÃO COM 15% OFF
+            </a>
+            
+            <p class="text-sm text-stone-600 flex items-center justify-center gap-2">
+                <i class="fas fa-shield-check text-green-600"></i> 
+                Garantia de 30 dias ou refazemos GRÁTIS
+            </p>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mt-8 max-w-2xl mx-auto">
+                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow">
+                    <p class="text-3xl font-bold text-yellow-600">+7</p>
+                    <p class="text-xs uppercase text-stone-600 tracking-wider">Anos</p>
+                </div>
+                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow">
+                    <p class="text-3xl font-bold text-rose-600">+719</p>
+                    <p class="text-xs uppercase text-stone-600 tracking-wider">Seguidoras</p>
+                </div>
+                <div class="bg-white/80 backdrop-blur rounded-xl p-4 shadow">
+                    <p class="text-3xl font-bold text-stone-800">+1.200</p>
+                    <p class="text-xs uppercase text-stone-600 tracking-wider">Procedimentos</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- O Que Você Ganha -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+                    🎁 O Que Você Ganha Nesta Oferta
+                </h2>
+                <p class="text-lg text-stone-600">Valor total dos bônus: <span class="text-rose-600 font-bold text-xl">R$ 205</span></p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Bônus 1 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-2xl p-6 border-2 border-yellow-300 shadow-lg fade-in-up">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-percent text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-stone-900 mb-2">15% OFF na Primeira Sessão</h3>
+                            <p class="text-stone-700 mb-2">Desconto aplicado diretamente no valor da aplicação ou manutenção.</p>
+                            <p class="text-sm text-yellow-700 font-semibold">Economia: R$ 45 - R$ 80</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bônus 2 -->
+                <div class="bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl p-6 border-2 border-rose-300 shadow-lg fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-microscope text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-stone-900 mb-2">Diagnóstico 3D da Lâmina</h3>
+                            <p class="text-stone-700 mb-2">Análise profissional de espessura, hidratação e histórico de traumas.</p>
+                            <p class="text-sm text-rose-700 font-semibold">Valor: R$ 80 — GRÁTIS</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bônus 3 -->
+                <div class="bg-gradient-to-br from-stone-50 to-stone-100 rounded-2xl p-6 border-2 border-stone-300 shadow-lg fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-stone-700 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-box-open text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-stone-900 mb-2">Kit Casa Anti-Infiltração</h3>
+                            <p class="text-stone-700 mb-2">Produtos profissionais para prolongar durabilidade em casa.</p>
+                            <p class="text-sm text-stone-700 font-semibold">Valor: R$ 45 — GRÁTIS</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bônus 4 -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-300 shadow-lg fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fab fa-whatsapp text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-stone-900 mb-2">Suporte WhatsApp 30 Dias</h3>
+                            <p class="text-stone-700 mb-2">Follow-up direto com Polly + vídeo tutorial personalizado.</p>
+                            <p class="text-sm text-green-700 font-semibold">Valor: Inestimável — INCLUSO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="https://api.whatsapp.com/send?phone=553497992866&text=Oii%20Polly!%20Vim%20do%20Instagram%20e%20quero%20GARANTIR%20minha%20sess%C3%A3o%20com%2015%25%20OFF%20%2B%20B%C3%B4nus!%20%F0%9F%8E%81" 
+                   target="_blank" 
+                   rel="noopener"
+                   class="inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-yellow-500/50 transition-all transform hover:scale-105">
+                    <i class="fab fa-whatsapp mr-2"></i> SIM, EU QUERO TODOS OS BÔNUS!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Por Que Você Está Aqui (Storytelling da Dor) -->
+    <section class="py-16 px-4 bg-stone-900 text-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Se Você Já Passou Por Isso, Você Não Está Sozinha...
+                </h2>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Dor 1 -->
+                <div class="bg-stone-800 rounded-xl p-6 border-l-4 border-red-500 fade-in-up">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-heart-broken text-red-500 text-3xl mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">😰 Infiltração verde ou amarela em 3 dias</h3>
+                            <p class="text-stone-300">Você acabou de sair do salão com unhas lindas... e dias depois, aquela mancha horrível aparece. Vergonha de mostrar as mãos. Frustração.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dor 2 -->
+                <div class="bg-stone-800 rounded-xl p-6 border-l-4 border-orange-500 fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-fire text-orange-500 text-3xl mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">😩 Dor, queimação e sensibilidade extrema</h3>
+                            <p class="text-stone-300">Lavar louça vira tortura. Tomar banho arde. E a profissional te disse que "é normal". Mentira. Não é.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dor 3 -->
+                <div class="bg-stone-800 rounded-xl p-6 border-l-4 border-yellow-500 fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-hand-paper text-yellow-500 text-3xl mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">😔 Unhas "bolachudas" que atrapalham tudo</h3>
+                            <p class="text-stone-300">Você queria elegância. Mas ficou com "garras de bruxa". Bate no teclado, não cabe na bolsa, constrangimento em reuniões.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10 bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6 text-center">
+                <p class="text-xl text-yellow-300 mb-4">
+                    <i class="fas fa-lightbulb mr-2"></i> <strong>A verdade?</strong> O problema nunca foi você. Foi a técnica errada.
+                </p>
+                <p class="text-stone-300">
+                    E é por isso que criei o <strong class="text-white">Método Arquitetura Inteligente®</strong> — para que você nunca mais passe por isso.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem é Polly (Autoridade Rápida) -->
+    <section class="py-16 px-4 bg-gradient-to-br from-amber-50 to-rose-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden fade-in-up">
+                <div class="grid md:grid-cols-2 gap-0">
+                    <!-- Foto -->
+                    <div class="relative polly-photo-frame">
+                        <img src="assets/polly-hero.png" alt="Polly Caixeta" class="w-full h-full">
+                        <div class="absolute top-4 left-4 bg-rose-600 text-white px-4 py-2 rounded-full text-sm font-bold">
+                            <i class="fas fa-award mr-2"></i> 7+ Anos
+                        </div>
+                    </div>
+                    
+                    <!-- Texto -->
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold text-stone-900 mb-4">Oi, eu sou a Polly 👋</h2>
+                        <p class="text-stone-700 mb-4 leading-relaxed">
+                            Fundadora do <strong>Studio VIP Nails</strong> em Uberlândia-MG. Há mais de 7 anos, resgato unhas traumatizadas por técnicas erradas.
+                        </p>
+                        <p class="text-stone-700 mb-6 leading-relaxed">
+                            Sou pioneira em usar <strong>protocolos hospitalares de biossegurança</strong> aplicados à estética das mãos. Criadora do método <strong>"Arquitetura Inteligente"</strong>, que já realizou <strong>1.200+ procedimentos sem intercorrências</strong>.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                                <span class="text-stone-700">Especialista em fibra e molde F1</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                                <span class="text-stone-700">Autoclave hospitalar em todo procedimento</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                                <span class="text-stone-700">Unhas que duram 30 dias sem dor</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <a href="https://www.instagram.com/pollycaixeta.nails/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-rose-600 hover:text-rose-700 font-semibold">
+                                <i class="fab fa-instagram text-xl"></i> @pollycaixeta.nails
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos (Prova Social) -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+                    💬 O Que Minhas Clientes Dizem
+                </h2>
+                <p class="text-stone-600">Resultados reais de mulheres que tomaram essa decisão</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Depoimento 1 -->
+                <div class="testimonial-card bg-stone-50 rounded-2xl p-6 shadow-lg fade-in-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-rose-400 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl">M</div>
+                        <div>
+                            <p class="font-bold text-stone-900">Mariana L.</p>
+                            <p class="text-xs text-stone-500">Empresária, 34 anos</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-stone-700 italic">"Eu achava que infiltração era normal até conhecer a Polly. Hoje minhas unhas duram 28 dias perfeitas. Nunca mais volto para salão comum."</p>
+                </div>
+                
+                <!-- Depoimento 2 -->
+                <div class="testimonial-card bg-stone-50 rounded-2xl p-6 shadow-lg fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-xl">J</div>
+                        <div>
+                            <p class="font-bold text-stone-900">Jéssica P.</p>
+                            <p class="text-xs text-stone-500">Advogada, 28 anos</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-stone-700 italic">"Troquei 5 profissionais em 1 ano. Com a Polly, nunca mais precisei trocar. Ela é a ÚNICA que me explicou o que estava acontecendo."</p>
+                </div>
+                
+                <!-- Depoimento 3 -->
+                <div class="testimonial-card bg-stone-50 rounded-2xl p-6 shadow-lg fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-stone-500 to-stone-700 rounded-full flex items-center justify-center text-white font-bold text-xl">C</div>
+                        <div>
+                            <p class="font-bold text-stone-900">Camila R.</p>
+                            <p class="text-xs text-stone-500">Arquiteta, 41 anos</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-stone-700 italic">"Primeira profissional que me mostrou a autoclave e explicou química. Minhas unhas nunca ficaram tão naturais e resistentes."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (Objeções) -->
+    <section class="py-16 px-4 bg-stone-100">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+                    ❓ Perguntas Frequentes
+                </h2>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-white rounded-xl p-6 shadow-sm border border-stone-200">
+                    <div class="flex items-center justify-between" onclick="toggleFaq(1)">
+                        <h3 class="font-bold text-lg text-stone-900">Quanto tempo dura a aplicação?</h3>
+                        <i class="fas fa-chevron-down text-stone-500 transition-transform" id="icon-1"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-stone-600" id="answer-1">
+                        Entre 20 a 30 dias sem infiltração, descamação ou descolamento. O tempo exato depende da sua rotina, mas com os cuidados corretos (que eu ensino), você mantém as unhas perfeitas por 1 mês completo.
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white rounded-xl p-6 shadow-sm border border-stone-200">
+                    <div class="flex items-center justify-between" onclick="toggleFaq(2)">
+                        <h3 class="font-bold text-lg text-stone-900">O processo dói?</h3>
+                        <i class="fas fa-chevron-down text-stone-500 transition-transform" id="icon-2"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-stone-600" id="answer-2">
+                        Não. Dor não é normal. Se você já sentiu dor em outros lugares, foi erro técnico (lixamento excessivo ou química agressiva). Aqui, o processo é 100% indolor.
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white rounded-xl p-6 shadow-sm border border-stone-200">
+                    <div class="flex items-center justify-between" onclick="toggleFaq(3)">
+                        <h3 class="font-bold text-lg text-stone-900">E se eu não gostar do resultado?</h3>
+                        <i class="fas fa-chevron-down text-stone-500 transition-transform" id="icon-3"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-stone-600" id="answer-3">
+                        Você tem 30 dias de garantia. Se suas unhas infiltrarem, descamarem ou você não ficar satisfeita com o acabamento, eu refaço GRATUITAMENTE — sem perguntas, sem burocracia.
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-white rounded-xl p-6 shadow-sm border border-stone-200">
+                    <div class="flex items-center justify-between" onclick="toggleFaq(4)">
+                        <h3 class="font-bold text-lg text-stone-900">Posso usar essa oferta na manutenção?</h3>
+                        <i class="fas fa-chevron-down text-stone-500 transition-transform" id="icon-4"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-stone-600" id="answer-4">
+                        Sim! O desconto de 15% + bônus vale tanto para aplicação completa quanto para manutenção. Você escolhe o que precisa agora.
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-white rounded-xl p-6 shadow-sm border border-stone-200">
+                    <div class="flex items-center justify-between" onclick="toggleFaq(5)">
+                        <h3 class="font-bold text-lg text-stone-900">Como funciona o agendamento?</h3>
+                        <i class="fas fa-chevron-down text-stone-500 transition-transform" id="icon-5"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-stone-600" id="answer-5">
+                        Simples: clique no botão verde do WhatsApp, envie a mensagem e eu respondo em até 2 horas com o link da agenda. Você escolhe o melhor horário para você.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final + Garantia -->
+    <section class="py-20 px-4 bg-gradient-to-br from-stone-900 via-stone-800 to-black text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-20 w-96 h-96 bg-yellow-600 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-80 h-80 bg-rose-600 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">
+                ⏰ Última Chamada: <span class="text-yellow-500">Restam Apenas</span>
+            </h2>
+            
+            <!-- Timer Repetido -->
+            <div class="inline-block bg-white/10 backdrop-blur rounded-2xl p-6 mb-8 border border-white/20">
+                <div class="flex justify-center gap-3">
+                    <div class="text-center">
+                        <div id="hours2" class="text-4xl font-bold bg-gradient-to-br from-yellow-500 to-amber-600 text-white w-16 h-16 rounded-xl flex items-center justify-center shadow-lg">02</div>
+                        <p class="text-xs text-stone-400 mt-2">HORAS</p>
+                    </div>
+                    <div class="text-4xl font-bold self-center">:</div>
+                    <div class="text-center">
+                        <div id="minutes2" class="text-4xl font-bold bg-gradient-to-br from-yellow-500 to-amber-600 text-white w-16 h-16 rounded-xl flex items-center justify-center shadow-lg">00</div>
+                        <p class="text-xs text-stone-400 mt-2">MIN</p>
+                    </div>
+                    <div class="text-4xl font-bold self-center">:</div>
+                    <div class="text-center">
+                        <div id="seconds2" class="text-4xl font-bold bg-gradient-to-br from-yellow-500 to-amber-600 text-white w-16 h-16 rounded-xl flex items-center justify-center shadow-lg">00</div>
+                        <p class="text-xs text-stone-400 mt-2">SEG</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/20 mb-8">
+                <h3 class="text-2xl font-bold mb-4">🎁 Recapitulando Seu Presente:</h3>
+                <ul class="text-left space-y-3 mb-6 max-w-md mx-auto">
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                        <span>15% OFF na primeira sessão</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                        <span>Diagnóstico 3D (R$ 80) GRÁTIS</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                        <span>Kit Casa (R$ 45) GRÁTIS</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                        <span>Suporte WhatsApp 30 dias INCLUSO</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-shield-check text-green-400 text-xl"></i>
+                        <span>Garantia de 30 dias ou refaz GRÁTIS</span>
+                    </li>
+                </ul>
+                <p class="text-yellow-300 font-bold text-xl">Valor total: R$ 205 em bônus</p>
+            </div>
+            
+            <a href="https://api.whatsapp.com/send?phone=553497992866&text=Oii%20Polly!%20Vim%20do%20Instagram%20e%20quero%20GARANTIR%20minha%20sess%C3%A3o%20com%2015%25%20OFF%20%2B%20B%C3%B4nus!%20%F0%9F%8E%81" 
+               target="_blank" 
+               rel="noopener"
+               class="cta-pulse inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-12 py-6 rounded-full font-bold text-2xl shadow-2xl hover:shadow-yellow-500/50 transition-all transform hover:scale-105 mb-6">
+                <i class="fab fa-whatsapp mr-3 text-3xl"></i> SIM, EU QUERO AGORA!
+            </a>
+            
+            <p class="text-stone-400 text-sm">
+                ⚠️ Após o timer expirar, você perde os bônus e entra na lista de espera (próxima vaga: 15 dias)
+            </p>
+        </div>
+    </section>
+
+    <!-- Sticky CTA Mobile -->
+    <div class="sticky-cta bg-gradient-to-r from-yellow-500 to-amber-600 p-4 shadow-2xl md:hidden" id="stickyCta">
+        <a href="https://api.whatsapp.com/send?phone=553497992866&text=Oii%20Polly!%20Vim%20do%20Instagram%20e%20quero%20GARANTIR%20minha%20sess%C3%A3o%20com%2015%25%20OFF%20%2B%20B%C3%B4nus!%20%F0%9F%8E%81" 
+           target="_blank" 
+           rel="noopener"
+           class="flex items-center justify-center text-white font-bold text-lg w-full py-3 rounded-full">
+            <i class="fab fa-whatsapp mr-2 text-xl"></i> GARANTIR 15% OFF
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 text-stone-500 py-8 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="mb-2">&copy; 2025 Studio VIP - Polly Caixeta Nails</p>
+            <p class="text-xs">📍 Uberlândia - MG | 📱 WhatsApp: (34) 9799-2866</p>
+            <p class="text-xs mt-4">
+                <a href="https://www.instagram.com/pollycaixeta.nails/" target="_blank" rel="noopener" class="hover:text-yellow-500 transition">
+                    <i class="fab fa-instagram"></i> @pollycaixeta.nails
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== TIMER COM PERSISTÊNCIA ==========
+        const TIMER_DURATION = 2 * 60 * 60; // 2 horas em segundos
+        const STORAGE_KEY = 'polly_timer_start';
+        const EXPIRED_KEY = 'polly_offer_expired';
+
+        function checkIfExpired() {
+            return localStorage.getItem(EXPIRED_KEY) === 'true';
+        }
+
+        function getTimerStart() {
+            const savedStart = localStorage.getItem(STORAGE_KEY);
+            if (savedStart) {
+                const elapsed = Math.floor((Date.now() - parseInt(savedStart)) / 1000);
+                const remaining = TIMER_DURATION - elapsed;
+                if (remaining <= 0) {
+                    localStorage.setItem(EXPIRED_KEY, 'true');
+                    localStorage.removeItem(STORAGE_KEY);
+                    showExpiredPage();
+                    return null;
+                }
+                return remaining;
+            }
+            return null;
+        }
+
+        function startNewTimer() {
+            localStorage.setItem(STORAGE_KEY, Date.now().toString());
+            localStorage.removeItem(EXPIRED_KEY);
+            return TIMER_DURATION;
+        }
+
+        function showExpiredPage() {
+            document.body.innerHTML = `
+                <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-stone-900 to-black px-4">
+                    <div class="max-w-2xl mx-auto text-center bg-white/10 backdrop-blur-md p-12 rounded-3xl border border-white/20">
+                        <i class="fas fa-clock text-6xl text-yellow-500 mb-6 block"></i>
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Oferta Expirada</h1>
+                        <p class="text-xl text-stone-300 mb-8">
+                            O tempo para aproveitar os <strong class="text-yellow-400">15% OFF + Bônus</strong> expirou.
+                        </p>
+                        <div class="bg-yellow-500/20 border border-yellow-500/50 rounded-xl p-6 mb-8">
+                            <p class="text-yellow-200 text-lg">
+                                <i class="fas fa-info-circle mr-2"></i> Mas você ainda pode agendar normalmente!
+                            </p>
+                        </div>
+                        <a href="https://api.whatsapp.com/send?phone=553497992866&text=Olá%20Polly%2C%20gostaria%20de%20agendar%20uma%20consulta." 
+                           target="_blank" 
+                           rel="noopener" 
+                           class="inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg hover:scale-105 transition">
+                            <i class="fab fa-whatsapp mr-3"></i> Agendar Consulta
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function initializeTimer() {
+            if (checkIfExpired()) return;
+            
+            let timeRemaining = getTimerStart();
+            if (timeRemaining === null) {
+                timeRemaining = startNewTimer();
+            }
+
+            function updateTimer() {
+                if (timeRemaining === null) return;
+
+                const hours = Math.floor(timeRemaining / 3600);
+                const minutes = Math.floor((timeRemaining % 3600) / 60);
+                const seconds = timeRemaining % 60;
+
+                // Atualizar todos os timers
+                const updateDigit = (id, value) => {
+                    const el = document.getElementById(id);
+                    if (el) el.innerText = value.toString().padStart(2, '0');
+                };
+
+                updateDigit('hours', hours);
+                updateDigit('minutes', minutes);
+                updateDigit('seconds', seconds);
+                updateDigit('hours2', hours);
+                updateDigit('minutes2', minutes);
+                updateDigit('seconds2', seconds);
+
+                if (timeRemaining > 0) {
+                    timeRemaining--;
+                } else {
+                    localStorage.setItem(EXPIRED_KEY, 'true');
+                    localStorage.removeItem(STORAGE_KEY);
+                    showExpiredPage();
+                }
+            }
+
+            setInterval(updateTimer, 1000);
+            updateTimer();
+        }
+
+        // Iniciar timer
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeTimer);
+        } else {
+            initializeTimer();
+        }
+
+        // ========== FAQ TOGGLE ==========
+        function toggleFaq(id) {
+            const answer = document.getElementById(`answer-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            answer.classList.toggle('active');
+            icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+        }
+
+        // ========== STICKY CTA MOBILE ==========
+        window.addEventListener('scroll', () => {
+            const stickyCta = document.getElementById('stickyCta');
+            if (window.scrollY > 800) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        });
+
+        // ========== SCROLL REVEAL ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
