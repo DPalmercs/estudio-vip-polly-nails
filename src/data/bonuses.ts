@@ -24,10 +24,10 @@ export const bonuses = [
   },
   {
     id: 3,
-    title: 'Kit Casa Anti-Infiltração',
-    description: 'Produtos profissionais para prolongar a durabilidade em casa.',
+    title: 'Guia Blindagem 30 Dias',
+    description: 'O Protocolo VIP que mantém as unhas perfeitas por 1 mês completo',
     value: 'Valor: R$ 45 — GRÁTIS',
-    highlight: 'Passo a passo para manutenção diária',
+    highlight: 'Cuidados sobre infiltração, descamação e quebra',
     icon: FaBoxOpen,
     borderClass: 'border-stone-300',
     backgroundClass: 'from-stone-50 to-stone-100',

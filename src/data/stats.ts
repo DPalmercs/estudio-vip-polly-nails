@@ -35,7 +35,7 @@ export const offerSummary = [
   },
   {
     id: 3,
-    label: 'Kit Casa (R$ 45) grátis',
+    label: 'Guia Blindagem (R$ 45) grátis',
     icon: FaCircleCheck,
   },
   {
