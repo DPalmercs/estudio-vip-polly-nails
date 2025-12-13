@@ -23,7 +23,7 @@ export const faqs = [
     id: 4,
     question: 'Posso usar essa oferta na manutenção?',
     answer:
-      'Sim! O desconto de 15% + bônus vale tanto para aplicação completa quanto para manutenção. Você escolhe o que precisa agora.',
+      'Sim! O desconto de 15% + bônus da primeira sessão vale tanto para aplicação completa, procedimentos essenciais necessáriosquanto para manutenção. Você escolhe o que precisa agora.',
   },
   {
     id: 5,
